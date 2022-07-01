@@ -3,7 +3,9 @@
 
 int set[10];
 
-void add(int start, int end);
+int find(int vertex);
+void unionEdge(int start, int end);
+
 
 int main(void)
 {
@@ -22,13 +24,13 @@ int main(void)
     {
         start = buff[0];
         end = buff[2];
-        add(start, end);
+        unionEdge(start, end);
         fgets(buff, 4, (FILE*)fp);
     }
 
     start = buff[0];
     end = buff[2];
-    add(start, end);
+    unionEdge(start, end);
 
     // for (int i = 0; i < 10; ++i)
     // {
@@ -48,7 +50,24 @@ int main(void)
     return 0;
 }
 
-void add(int start, int end)
+int find(int vertex)
 {
+    int now = vertex;
+    int next = set[vertex];
+    while(next != now)
+    {
+        now = next;
+        next = set[now];
+    }
+    return now;
+}
 
+void unionEdge(int start, int end)
+{
+    int startRoot = find(start);
+    int endRoot = find(end);
+    if (startRoot == endRoot)
+        return;
+    set[startRoot] = end;
+        return;
 }
