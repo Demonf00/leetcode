@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        int length = 1;
+        int length = 0;
         ListNode* current = head;
 
         //count the length of list
@@ -29,12 +29,12 @@ public:
 
         ListNode* newList = new ListNode(current->val);
         ListNode* currentNew = newList;
+        current = current->next;
         while(current != nullptr)
         {
+            currentNew->next = new ListNode(current->val);
+            currentNew = currentNew->next;
             current = current->next;
-            ListNode* nextNode = new ListNode(current->val);
-            currentNew->next = nextNode;
-            currentNew = nextNode;
         }
         return newList;
     }
