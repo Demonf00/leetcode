@@ -13,7 +13,7 @@ int main() {
     /*************important here***********/
     vector<int> v4(a, *(&a + 1));
 
-    
+
     // 3. get length
     cout << "The size of v4 is: " << v4.size() << endl;
     // 4. access element
@@ -42,4 +42,47 @@ int main() {
     v4.push_back(-1);
     // 9. delete the last element
     v4.pop_back();
+
+
+
+    /********template**********/
+
+    template <size_t n, size_t m>
+    void printArray(int (&a)[n][m]) {
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                cout << a[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+
+
+
+    template <typename T, std::size_t N>   // (2)
+    class Array{
+
+    public:
+        std::size_t getSize() const {
+            return N;
+        }
+
+    private:
+        T elem[N];
+    };
+
+    std::cout << '\n';
+
+    Array<int, 100> intArr;             // (3)
+    std::cout << "intArr.getSize(): " << intArr.getSize() << '\n';
+
+    Array<std::string, 5> strArr;       // (4)
+    std::cout << "strArr.getSize(): " << strArr.getSize() << '\n';
+
+    Array<Array<int, 3>, 25> intArrArr; // (5)
+    std::cout << "intArrArr.getSize(): " << intArrArr.getSize() << '\n';
+
+    std::cout << '\n';
+
+
 }
